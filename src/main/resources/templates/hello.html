@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>tokenFiled</title>
+    <script th:src="@{/lib/jquery-3.4.1.min.js}"></script>
+    <script th:src="@{/dist/bootstrap-tokenfield.js}"></script>
+    <script th:src="@{/lib/serializeJson.js}"></script>
+    <link rel="stylesheet" th:href="@{/dist/css/bootstrap-tokenfield.css}"  media="all">
+</head>
+<script type="text/javascript">
+$(function () {
+    $('#tokenfield').tokenfield();
+})
+    function save() {
+        let serialize = $('#form').serializeJSON();
+        $.ajax({
+           type:'POST',
+           dataType:'json',
+           contentType:"application/json;charset=UTF-8",
+           data:JSON.stringify(serialize) ,
+           url:'/test/save',
+           success:function (data) {
+               if (data.status){
+                   alert("保存成功！")
+               }
+           }
+       })
+    }
+</script>
+<body>
+<div style="height: 200px;width: 500px;background-color: yellowgreen;margin: 200px auto">
+    <form action="" method="post"  id="form" style="height: 100%">
+        <table style="text-align: center;margin: 0px auto">
+            <thead>
+            <tr>
+                <td colspan="2">学生</td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>姓名：</td>
+                <td>
+                    <input type="hidden" name="id">
+                    <input type="text" class="form-control" name="name">
+
+                </td>
+            </tr>
+            <tr>
+                <td>性别：</td>
+                <td>
+                    <input type="radio" class="form-control" name="sex" value="men" checked = 'checked'>男
+                    <input type="radio" class="form-control" name="sex" value="women">女
+                </td>
+            </tr>
+            <tr>
+                <td>年龄：</td>
+                <td><input type="text" class="form-control" name="age"></td>
+            </tr>
+            <tr>
+                <td>爱好：</td>
+                <td><input type="text" class="form-control" id="tokenfield" name="hobby"></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <button type="button" onclick="save()">保存</button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </form>
+</div>
+</body>
+</html>
