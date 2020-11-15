@@ -10,7 +10,20 @@
 </head>
 <script type="text/javascript">
 $(function () {
-    $('#tokenfield').tokenfield();
+    $('#tokenfield').tokenfield({
+        autocomplete: {
+            source: ['红色','蓝色','绿色','黄色','蓝紫色','棕色','紫色','黑色','白色'],
+            delay: 100
+        },
+        showAutocompleteOnFocus: true
+    });
+    $('#tokenfield').on('tokenfield:createtoken', function (event) {
+        var existingTokens = $(this).tokenfield('getTokens');
+        $.each(existingTokens, function(index, token) {
+            if (token.value === event.attrs.value)
+                event.preventDefault();
+        });
+    });
 })
     function save() {
         let serialize = $('#form').serializeJSON();
