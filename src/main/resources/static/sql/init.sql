@@ -38,6 +38,5 @@ INSERT INTO `student` VALUES (4, '展示', 'men', '王五, 问问', 12);
 INSERT INTO `student` VALUES (5, '维恩', 'men', '任务, we, eee, 问问, wewe', 34);
 INSERT INTO `student` VALUES (6, '12312', 'men', '12, 23, red', 123);
 INSERT INTO `student` VALUES (8, '234', 'men', '1, 12', 12);
-INSERT INTO `student` VALUES (13, '徐明明', 'women', '', 12);
 
 SET FOREIGN_KEY_CHECKS = 1;
