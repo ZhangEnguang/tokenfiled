@@ -4,4 +4,16 @@
 <insert id="insert" parameterType="com.eplugger.entity.Student">
     insert into student(name,sex,hobby,age) values (#{name},#{sex},#{hobby},#{age})
 </insert>
+ <select id="search" parameterType="string" resultType="com.eplugger.entity.Student">
+    select * from student where hobby like '%${search}%'
+ </select>
+<delete id="delete" parameterType="int">
+    delete from student where id = #{id}
+</delete>
+<select id="selectById" parameterType="int" resultType="com.eplugger.entity.Student">
+    select * from student where id = #{id}
+ </select>
+<update id="updateById" parameterType="com.eplugger.entity.Student">
+    update student set name = #{name},sex = #{sex},hobby = #{hobby},age = #{age} where id = #{id}
+</update>
 </mapper>
